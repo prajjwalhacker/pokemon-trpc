@@ -2,7 +2,7 @@ import { z } from 'zod';
 import { procedure, router } from '../trpc';
 
 export const appRouter = router({
-  hello: procedure
+  multiplePokemon: procedure
     .input(
       z.array(z.string())
     )
@@ -14,6 +14,14 @@ export const appRouter = router({
     }});
      return res;
     }),
+  singlePokemon: procedure.input(z.string()).query(async (opts) => {
+    const res = await opts.ctx.prisma.pokemon.findFirst({
+      where: {
+        name: opts.input,
+      }
+    })
+    return res;
+  })
 });
 
 // export type definition of API
