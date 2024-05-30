@@ -4,14 +4,11 @@ import { procedure, router } from '../trpc';
 export const appRouter = router({
   hello: procedure
     .input(
-      z.object({
-        text: z.string(),
-      }),
+      z.array(z.string())
     )
-    .query((opts) => {
-      return {
-        greeting: `hello ${opts.input.text}`,
-      };
+    .query(async (opts) => {
+     const res = await opts.ctx.prisma.pokemon.findMany();
+     return res;
     }),
 });
 
