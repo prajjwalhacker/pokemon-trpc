@@ -7,7 +7,11 @@ export const appRouter = router({
       z.array(z.string())
     )
     .query(async (opts) => {
-     const res = await opts.ctx.prisma.pokemon.findMany();
+     const res = await opts.ctx.prisma.pokemon.findMany({where: {
+      name: {
+        in: opts.input,
+      }, 
+    }});
      return res;
     }),
 });
