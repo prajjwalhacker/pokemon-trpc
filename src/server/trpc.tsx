@@ -18,7 +18,7 @@ import { PrismaClient } from "@prisma/client";
 export async function createContextInner(opts?: trpcNext.CreateNextContextOptions) {
 const prisma = new PrismaClient();
 
-return { prisma };
+return { prisma, opts };
 }
 
 export type Context = trpc.inferAsyncReturnType<typeof createContextInner>;

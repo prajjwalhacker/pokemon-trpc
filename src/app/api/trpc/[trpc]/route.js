@@ -8,7 +8,7 @@ import { createContextInner } from '@/server/trpc';
 
 
 
-const handler  = (req: Request) => {
+const handler  = (req) => {
     return fetchRequestHandler({
       endpoint: "/api/trpc",
       router: appRouter,
