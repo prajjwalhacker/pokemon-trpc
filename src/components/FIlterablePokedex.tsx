@@ -7,7 +7,7 @@ import TableComponent from "../components/TableComponent";
 import PokemonTypeSelectiom from "../components/PokemonTypeSelection";
 import { useEffect, useState } from "react";
 
-export default function Home() {
+export default function FilterablePokedex() {
    
   const [selectedType, setSelectedType] = useState<string>()
   const singlePokemon = trpc.singlePokemon.useQuery(selectedType || '');
@@ -35,7 +35,7 @@ export default function Home() {
  
   
   return (
-    <main className={styles.main}>
+    <div className={styles.main}>
       <PokemonTypeSelectiom selectedType={selectedType} selectType={(value) => {
            setSelectedType(value);
       }}/>
@@ -44,6 +44,6 @@ export default function Home() {
           example type
           charizard, pokemon etc
       </div> }
-    </main>
+    </div>
   );
 }
